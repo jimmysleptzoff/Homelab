@@ -10,9 +10,9 @@ Last Modified: July 27, 2026
 
 As of right now, the homelab is segmented on its own screened-subnet on my home network. However, within the lab itself, there is no segmentation. In order to properly segment devices within the lab (e.g. isolating management interfaces, servers, offensive/defensive targets, etc.), I will need to implement a VLAN with IEEE 802.1Q tagging.
 
-To do this, each device's traffic will need to be tagged and routed through `vmbr1` which is the vlan-aware bridge I configured earlier, acting as the trunk port to carry traffic between pfSense and the device(s). After this, I can configure pfSense firewall rules with VLAN interface to route traffic and filter traffic between segments.
+To do this, each device's traffic will need to be tagged and routed through `vmbr1` which is the vlan-aware bridge I configured earlier, acting as the trunk port to carry traffic between pfSense and other devices. After this, I can configure pfSense firewall rules on each VLAN interface to filter traffic between segments.
 
-I will also need to reconfigure the VPN to ensure that I can reach the entire homelab environment when I'm away from home.
+I will also need to reconfigure the VPN to ensure that I can reach the newly created segments when I'm away from home.
 
 ## Plan
 
@@ -29,7 +29,7 @@ I will also need to reconfigure the VPN to ensure that I can reach the entire ho
 #### VLAN10 (Management)
 
 * **Allow:** Management --> any (e.g. pfSense GUI, etc)
-* **Deny:** None (Denies everything by default, no rule needed)
+* **Deny:** None (Denies everything else by default, no rule needed)
 
 #### VLAN20 (Server/Infra)
 
@@ -49,33 +49,33 @@ Add three interfaces, all on the em1 interface with their designated tags (10, 2
 
 `Interfaces > Assignments > Interface Assignments > LAN`
 
-Change the LAN interface assignment to VLAN10. When this is applied, the connection to pfSense will be lost because Xubuntu (what i'm accessing the GUI on) is not being tagged. To fix this, in Proxmox, go to `Xubuntu > Hardware > Network Device`, and set the VLAN tag to 10. Once this has been applied, pfSense access is restored.
+Change the LAN interface assignment to VLAN10. When this is applied, the connection to pfSense will be lost because traffic on Xubuntu (what i'm accessing the pfSense GUI on) is not being tagged. To fix this, in Proxmox, go to `Xubuntu > Hardware > Network Device`, and set the VLAN tag to 10. Once this has been applied, pfSense access is restored.
 
-On the same page on pfSense, add VLAN20 and VLAN30. They will automatically be assigned to OPT1 and OPT2 respectively. Then enable and assign each of them a respective static IPv4 (192.168.20.1/24 and 192.168.30.1/24). I've opted not to use DHCP as of now because there isn't much of a need for it.
+On the same page in pfSense, add VLAN20 and VLAN30. They will automatically be assigned to OPT1 and OPT2 respectively. Then enable and assign each of them a respective static IPv4 (192.168.20.1/24 and 192.168.30.1/24). I've opted not to use DHCP as of now because there isn't much of a need for it.
 
 ## Configure Firewall
 
 #### VLAN10
 
-Since VLAN10 was the LAN, it already has default allow to any to any, and everything inbound is blocked. No new rules needed.
+Since VLAN10 was the LAN, it already has default allow any to any, and everything inbound is blocked. No new rules needed.
 
 #### VLAN20
 
-These rules must be in order because they will be followed sequentially (top to bottom).
+These rules must be in added in the following order because they will be followed sequentially (top to bottom).
 
-| State | Protocol | Source | Port | Destination | Gateway | 
+| Action | Protocol | Source | Port | Destination | Gateway | 
 |---|---|---|---|---|---|
-| Deny | any | VLAN20 subnets | any | VLAN10 subnets | any |
-| Deny | any | VLAN20 subnets | any | VLAN30 subnets | any |
+| Block | any | VLAN20 subnets | any | VLAN10 subnets | any |
+| Block | any | VLAN20 subnets | any | VLAN30 subnets | any |
 | Allow | any | VLAN20 subnets | any | any | any |
 
 #### VLAN30
 
-Nothing is on this VLAN segment yet, everything outbound will be denied by default. No new rules needed.
+Nothing is on this VLAN segment yet, everything outbound will be denied by default, and there is nothing to access via inbound. No new rules needed.
 
 ## Testing the VLAN(s)
 
-Now that all three VLANs are set up and (hopefully) configured correctly, it's time to test. To do this, just use `ping` from one device on each segment. Since Xubuntu (where I'm accessing the pfSense GUI) is already on segment 10, I can just open a terminal quickly and test. To test the other two segments, I can spin up a temporary VM 
+Now that all three VLANs are set up and (hopefully) configured correctly, it's time to test. To do this, I just used `ping` to test connectivity from one device on one segment, to all other segments (and the internet). Since Xubuntu (where I'm accessing the pfSense GUI) is already on VLAN10, I can just open a terminal quickly and test. To test the other two segments, I can spin up a temporary VM and assign it a static IP.
 
 ### VLAN10
 
@@ -109,7 +109,7 @@ I would like to note the reasons for some of my decisions made above.
 
 ---
 
-* **Q:** Why didn't you allow VPN access to VLAN30?
+* **Q:** Why didn't I allow VPN access to VLAN30?
 * **A:** Currently there's nothing *on* VLAN30 to access anyways, and in the future, it will be a very controlled environment specifically for testing. I may add access in the future, but it will depend on what's on it.
 
 ---
