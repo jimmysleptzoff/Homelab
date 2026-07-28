@@ -25,8 +25,8 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
   - [x] Proxmox installed and configured
   - [x] pfSense deployed (WAN/LAN setup, admin hardening)
   - [x] Pi-hole deployed for DNS filtering
-  - [ ] WireGuard VPN (in progress) — client subnet isolation, scoped firewall rules
-  - [ ] VLAN segmentation
+  - [x] WireGuard VPN — client subnet isolation, scoped firewall rules
+  - [ ] VLAN segmentation (In progress)
   - [ ] DNS hardening with Unbound
 - [ ] **Phase 2 — Identity & Directory Services**
   - [ ] Windows Server Active Directory
@@ -50,9 +50,8 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
 Each completed phase has (or will have) its own write-up under [`/docs`](./docs), covering:
 * What was built and why
 * Configuration steps and key decisions
-* Problems hit and how they were resolved
-* Architecture diagrams where relevant
+* Problems encountered and how they were resolved
 
 ## Status
 
-Currently working through **Phase 1**: finishing WireGuard VPN configuration before moving into VLAN segmentation and DNS hardening.
+Currently working through **Phase 1**: I just finished verifying that I can access my homelab from my laptop and phone, and all of the items within the lab that I wanted to reach. Next, I will start working on VLAN segmentation.
