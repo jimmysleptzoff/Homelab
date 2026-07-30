@@ -26,10 +26,12 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
   - [x] pfSense deployed (WAN/LAN setup, admin hardening)
   - [x] Pi-hole deployed for DNS filtering
   - [x] WireGuard VPN — client subnet isolation, scoped firewall rules
-  - [ ] VLAN segmentation (In progress)
-  - [ ] DNS hardening with Unbound
+  - [x] VLAN segmentation
+  - [x] ~~DNS hardening with Unbound~~ (deprioritized, not currently relevant)
 - [ ] **Phase 2 — Identity & Directory Services**
-  - [ ] Windows Server Active Directory
+  - [x] Implement Windows Server Active Directory
+  - [x] Harden Windows Server Active Directory
+  - [ ] Implement Organizational Units (In progress)
 - [ ] **Phase 3 — Monitoring & SIEM**
   - [ ] Splunk or Elastic Stack, with log forwarding from pfSense/Pi-hole/AD
 - [ ] **Phase 4 — Vulnerability Management**
@@ -54,4 +56,4 @@ Each completed phase has (or will have) its own write-up under [`/docs`](./docs)
 
 ## Status
 
-Currently working through **Phase 1**: I just finished verifying that I can access my homelab from my laptop and phone, and all of the items within the lab that I wanted to reach. Next, I will start working on VLAN segmentation.
+Currently working through **Phase 2**: I have just completed the implementation and basic hardening of Windows AD and now I will move on to implementing OUs and objects within those OUs.
