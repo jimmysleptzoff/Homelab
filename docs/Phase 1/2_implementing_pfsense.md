@@ -63,7 +63,7 @@ PfSense comes with a default admin account using a default password. Changing th
 
 ### Turn on HTTPS
 
-Despite pfSense initially claiming to use HTTPS, it was instead using HTTP. Thankfully, switching to HTTPS is as simple as navigating to System > Advanced > Admin Access, and selecting it. 
+Despite pfSense initially claiming to use HTTPS, it was instead using HTTP. Thankfully, switching to HTTPS is as simple as navigating to System > Advanced > Admin Access, and selecting it.
 
 **Optional:**
 

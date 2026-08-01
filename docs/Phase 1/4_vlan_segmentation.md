@@ -19,7 +19,7 @@ I will also need to reconfigure the VPN to ensure that I can reach the newly cre
 ### VLAN segments:
 
 | VLAN ID | Subnet | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | 10 | 192.168.10.0/24 | Management (Xubuntu Management Workstation) |
 | 20 | 192.168.20.0/24 | Servers/Infra (AD/Splunk/etc) |
 | 30 | 192.168.30.0/24 | Reserved (Offensive/Defensive practice, etc.) |
@@ -63,8 +63,8 @@ Since VLAN10 was the LAN, it already has default allow any to any, and everythin
 
 These rules must be in added in the following order because they will be followed sequentially (top to bottom).
 
-| Action | Protocol | Source | Port | Destination | Gateway | 
-|---|---|---|---|---|---|
+| Action | Protocol | Source | Port | Destination | Gateway |
+| --- | --- | --- | --- | --- | --- |
 | Block | any | VLAN20 subnets | any | VLAN10 subnets | any |
 | Block | any | VLAN20 subnets | any | VLAN30 subnets | any |
 | Allow | any | VLAN20 subnets | any | any | any |

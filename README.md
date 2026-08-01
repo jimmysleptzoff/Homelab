@@ -12,7 +12,7 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
 ## Environment
 
 | Component | Tool |
-|---|---|
+| --- | --- |
 | Hypervisor | Proxmox VE |
 | Firewall / Router | pfSense |
 | DNS Filtering | Pi-hole |
@@ -21,39 +21,43 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
 
 ## Roadmap
 
-- [x] **Phase 1 — Network Foundation**
-  - [x] Proxmox installed and configured
-  - [x] pfSense deployed (WAN/LAN setup, admin hardening)
-  - [x] Pi-hole deployed for DNS filtering
-  - [x] WireGuard VPN — client subnet isolation, scoped firewall rules
-  - [x] VLAN segmentation
-  - [x] ~~DNS hardening with Unbound~~ (deprioritized, not currently relevant)
-- [ ] **Phase 2 — Identity & Directory Services**
-  - [x] Implement Windows Server Active Directory
-  - [x] Harden Windows Server Active Directory
-  - [ ] Implement Organizational Units (In progress)
-- [ ] **Phase 3 — Monitoring & SIEM**
-  - [ ] Splunk or Elastic Stack, with log forwarding from pfSense/Pi-hole/AD
-- [ ] **Phase 4 — Vulnerability Management**
-  - [ ] OpenVAS / Nessus Essentials
-  - [ ] Scan → triage → remediate → rescan cycle
-- [ ] **Phase 5 — Cloud Integration**
-  - [ ] Azure AD (Entra ID)
-  - [ ] Hybrid identity via Azure AD Connect
-  - [ ] Optional: Microsoft Sentinel
-- [ ] **Phase 6 — Offensive/Defensive Practice**
-  - [ ] Kali Linux + intentionally vulnerable targets in an isolated VLAN
-- [ ] **Phase 7 (Continuous) — Documentation**
-  - [ ] Architecture diagrams
-  - [ ] Per-phase write-ups (this repo)
+* [x] **Phase 1 — Network Foundation**
+  * [x] Proxmox installed and configured
+  * [x] pfSense deployed (WAN/LAN setup, admin hardening)
+  * [x] Pi-hole deployed for DNS filtering
+  * [x] WireGuard VPN — client subnet isolation, scoped firewall rules
+  * [x] VLAN segmentation
+  * [x] ~~DNS hardening with Unbound~~ (deprioritized, not currently relevant)
+* [ ] **Phase 2 — Identity & Directory Services**
+  * [x] Implement Windows Server Active Directory
+  * [x] Harden Windows Server Active Directory
+  * [x] Implement Organizational Units
+  * [x] Configure OU Objects
+  * [x] Set up a Fileserver & Shared Folders
+  * [x] Implement a Windows Workstation (Doc in progress)
+* [ ] **Phase 3 — Monitoring & SIEM**
+  * [ ] Splunk or Elastic Stack, with log forwarding from pfSense/Pi-hole/AD
+* [ ] **Phase 4 — Vulnerability Management**
+  * [ ] OpenVAS / Nessus Essentials
+  * [ ] Scan → triage → remediate → rescan cycle
+* [ ] **Phase 5 — Cloud Integration**
+  * [ ] Azure AD (Entra ID)
+  * [ ] Hybrid identity via Azure AD Connect
+  * [ ] Optional: Microsoft Sentinel
+* [ ] **Phase 6 — Offensive/Defensive Practice**
+  * [ ] Kali Linux + intentionally vulnerable targets in an isolated VLAN
+* [ ] **Phase 7 (Continuous) — Documentation**
+  * [ ] Architecture diagrams
+  * [ ] Per-phase write-ups (this repo)
 
 ## Documentation
 
 Each completed phase has (or will have) its own write-up under [`/docs`](./docs), covering:
+
 * What was built and why
 * Configuration steps and key decisions
 * Problems encountered and how they were resolved
 
 ## Status
 
-Currently working through **Phase 2**: I have just completed the implementation and basic hardening of Windows AD and now I will move on to implementing OUs and objects within those OUs.
+Currently working through **Phase 2**: I've successfully set up Windows AD with two scoped Organizational Units, as well as a file server. I am currently in the process of writing up the documentation for setting up the file server and testing the shared folders.

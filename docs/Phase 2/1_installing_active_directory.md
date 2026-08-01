@@ -77,7 +77,7 @@ Windows automatically configures the firewall for all three profiles (Domain, pr
 
 I'm not going to be using this VM for printing, and there have been attacks using this vector in the past (See [CVE-2021-34527](https://nvd.nist.gov/vuln/detail/cve-2021-34527)). Because of this, I'll just disable the print spooler altogether via PowerShell.
 
-```
+```powershell
 Stop-Service -Name Spooler
 Set-Service -Name Spooler -StartupType Disabled
 ```
@@ -124,7 +124,7 @@ In the same Group Policy Management Editor window from before, `Computer Configu
 
 There are a few specific policies here that I want to configure. Since I already used the GUI for the password and account lockout policies, I'll use Powershell for these.
 
-```
+```powershell
 # Account Logon
 auditpol /set /subcategory:"Kerberos Authentication Service" /success:enable /failure:enable
 auditpol /set /subcategory:"Kerberos Service Ticket Operations" /success:enable /failure:enable
@@ -146,7 +146,7 @@ Extra Note: these settings were applied locally via `auditpol` instead of using 
 
 # Troubleshooting
 
-[**~Section/Testing the DC**](#testing-the-dc)
+[**~/Section/Testing the DC**](#testing-the-dc)
 
 * **Issue:** `dcdiag` reported a failed `DFSREvent` test, citing warnings/errors related to SYSVOL within the last 24 hours
 * **Deduction:** After doing some research on what this meant, I initially assumed that this test was failing because there's only one DC (DFSR's name (Distributed File System Replication) implies multiple nodes are needed). I still wanted to double check exactly what the error was, however. In the event viewer logs for DFSREvent, there's one initial error at 1:56PM followed by info-level logs and another warning at 2:20PM. The error output states, "The specified domain either does not exist or could not be contacted". At the time of this error, DNS was not yet fully functional (it takes some time after promotion to start working properly), so it's highly likely that that was the problem.
