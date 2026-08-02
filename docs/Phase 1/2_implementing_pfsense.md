@@ -91,8 +91,6 @@ Login protection protects against brute-force login attacks and can be configure
 * You can also set "Max Processes" in the admin access section to 1 or 2 which will limit the number of users able to use the GUI concurrently. 
 * Check for and install updates
 
----
-
 # Troubleshooting
 
 [~/Section/Testing pfSense](#testing-the-web-gui)
@@ -100,10 +98,13 @@ Login protection protects against brute-force login attacks and can be configure
 * **Issue:** Initially, I was not getting a response when I pinged the web GUI
 * **Solution:** Switch virtual NIC from VirtIO (paravirtualized) to Intel E1000 and reconfigure WAN/LAN
 
+---
+
 * **Issue:** After switching to the Intel E1000 and verifying that I could ping the web GUI, the curl command would still hang.
 * **Solution:** Use HTTP instead of HTTPS
 * **Deduction:** While letting the curl command hang, I inspected pftop via the pfSense console and noticed that the request *was* being received, but with no response sent back. From here, I decided to try HTTP instead of HTTPS which worked despite pfSense claiming it was using HTTPS.
 
 [~/Section/Turn on HTTPS](#turn-on-https)
+
 * **Issue:** After binding a certificate to the GUI, Firefox threw a `SEC_ERROR_INADEQUATE_KEY_USAGE` error and refused to load the pfSense dashboard entirely
-* **Solution:** Used Chrome instead, which didn't enforce the same certificate restrictions and allowed access to the GUI. Fixed the certificate configuration properly while in Chrome, then switched back to using Firefox
+* **Solution:** Used Chrome instead, which didn't enforce the same certificate restrictions and allowed access to the GUI. Fixed the certificate configuration properly while in Chrome, then switched back to using Firefox.

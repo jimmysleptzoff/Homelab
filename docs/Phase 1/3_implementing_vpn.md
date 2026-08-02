@@ -68,20 +68,19 @@ As of right now, my phone can successfully reach pfSense via the VPN, but since 
 Navigate to `Firewall > Rules > WIREGUARDINTERFACE`, and add four new rules.
 
 | Destination | Port | Protocol | Purpose |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `10.0.0.50/32` | 8006 | TCP | Proxmox Web UI |
 | `192.168.10.0/24` | any | any | Reach VMs, pfSense GUI, etc. |
 | `10.0.0.40` | 443 | TCP | Reach Pi-hole web GUI over HTTPS |
 | `10.0.0.40` | 53 | TCP/UDP | Reach Pi-hole for DNS |
 
-Once these rules have been created, a separate rule on the WAN interface needs to be made to allow inbound UDP traffic on port 51820. 
+Once these rules have been created, a separate rule on the WAN interface needs to be made to allow inbound UDP traffic on port 51820.
 
 ### Testing
 
 Once all of these steps have been completed, I turned off my phone's Wi-Fi to force a cellular connection, and I enabled the VPN. Once I verified that the handshake was successful in the logs, I attempted to access both the Proxmox web GUI, and the pfSense web GUI, both of which were successful.
 
 ![pfsense-from-phone](/assets/images/pfsense-from-phone.PNG)
-
 
 # Troubleshooting
 

@@ -28,7 +28,7 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
   * [x] WireGuard VPN — client subnet isolation, scoped firewall rules
   * [x] VLAN segmentation
   * [x] ~~DNS hardening with Unbound~~ (deprioritized, not currently relevant)
-* [ ] **Phase 2 — Identity & Directory Services**
+* [x] **Phase 2 — Identity & Directory Services**
   * [x] Implement Windows Server Active Directory
   * [x] Harden Windows Server Active Directory
   * [x] Implement Organizational Units

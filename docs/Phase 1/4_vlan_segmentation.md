@@ -89,7 +89,7 @@ Now that all three VLANs are set up and (hopefully) configured correctly, it's t
 
 ![vlan30-test](/assets/images/vlan30-test.png)
 
-As shown above, all three VLAN segments are working properly. All that's left to do is reconfigure the VPN.
+As shown above, all three VLAN segments are working properly. All that's left to do is reconfigure the VPN. By the way, no, that is not a real domain.
 
 ## Fix VPN
 
