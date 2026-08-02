@@ -53,7 +53,7 @@ Address = 10.10.10.3/32
 DNS = 10.0.0.40
 
 [Peer]
-PublicKey = <pfSense's public tunnel key>
+PublicKey = <pfSenses public tunnel key>
 AllowedIPs = 10.0.0.50/32, 192.168.10.0/24, 10.0.0.40/32
 Endpoint = <home public IP>:51820
 PersistentKeepalive = 25

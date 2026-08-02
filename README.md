@@ -34,9 +34,9 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
   * [x] Implement Organizational Units
   * [x] Configure OU Objects
   * [x] Set up a Fileserver & Shared Folders
-  * [x] Implement a Windows Workstation (Doc in progress)
+  * [x] Implement a Windows Workstation
 * [ ] **Phase 3 — Monitoring & SIEM**
-  * [ ] Splunk or Elastic Stack, with log forwarding from pfSense/Pi-hole/AD
+  * [ ] Splunk or Elastic Stack, with log forwarding from pfSense/Pi-hole/AD (In progress)
 * [ ] **Phase 4 — Vulnerability Management**
   * [ ] OpenVAS / Nessus Essentials
   * [ ] Scan → triage → remediate → rescan cycle
@@ -60,4 +60,4 @@ Each completed phase has (or will have) its own write-up under [`/docs`](./docs)
 
 ## Status
 
-Currently working through **Phase 2**: I've successfully set up Windows AD with two scoped Organizational Units, as well as a file server. I am currently in the process of writing up the documentation for setting up the file server and testing the shared folders.
+Currently working through **Phase 3**: I've successfully set up Windows AD with two scoped Organizational Units, as well as a file server with shared folders. I also implemented NTFS and Share permissions on each of the shared folders to allow for least-privilege. Next, I will be implementing Splunk for log aggregation and network monitoring.

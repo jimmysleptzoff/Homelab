@@ -71,5 +71,6 @@ In order to implement this, I'll have to create shared folders, and grant the Ma
 # Troubleshooting
 
 [**~/Section/Setting up the OUs/Setting permissions**](#setting-permissions)
+
 * **Issue:** Accidentally delegated zodmin control domain-wide.
 * **Solution:** Turn on advanced features: `Active Directory Users and Computers (ADUC) > View > Advanced Features`. Then `Right-click domain > Properties > Security` and remove the zodmin group and apply. Thankfully, each user was disabled when I made them (for this exact reason).
