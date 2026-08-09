@@ -39,7 +39,7 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
   * [ ] Splunk or Elastic Stack, with log forwarding from pfSense/Pi-hole/AD (In progress)
 * [ ] **Phase 4 — Vulnerability Management**
   * [ ] OpenVAS / Nessus Essentials
-  * [ ] Scan → triage → remediate → rescan cycle
+  * [ ] Scan → triage → remediate → re-scan cycle
 * [ ] **Phase 5 — Cloud Integration**
   * [ ] Azure AD (Entra ID)
   * [ ] Hybrid identity via Azure AD Connect
