@@ -79,15 +79,15 @@ Now that all three VLANs are set up and (hopefully) configured correctly, it's t
 
 ### VLAN10
 
-![vlan10-test](/assets/images/vlan10-test.png)
+![vlan10-test](/assets/images/phase1/vlan10-test.png)
 
 ### VLAN20
 
-![vlan20-test](/assets/images/vlan20-test.png)
+![vlan20-test](/assets/images/phase1/vlan20-test.png)
 
 ### VLAN30
 
-![vlan30-test](/assets/images/vlan30-test.png)
+![vlan30-test](/assets/images/phase1/vlan30-test.png)
 
 As shown above, all three VLAN segments are working properly. All that's left to do is reconfigure the VPN. By the way, no, that is not a real domain.
 

@@ -24,4 +24,4 @@ This may be fixable with port forwarding, but for now, I'll just keep it on a de
 
 Now that everything is properly configured, I can access the web GUI and verify that my traffic is being rerouted to Pi-hole:
 
-![Pi-hole dashboard up and working](/assets/images/pi-hole-dashboard.png)
+![Pi-hole dashboard up and working](/assets/images/initial_setup/pi-hole-dashboard.png)

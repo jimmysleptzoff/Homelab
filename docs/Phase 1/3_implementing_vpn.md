@@ -80,7 +80,7 @@ Once these rules have been created, a separate rule on the WAN interface needs t
 
 Once all of these steps have been completed, I turned off my phone's Wi-Fi to force a cellular connection, and I enabled the VPN. Once I verified that the handshake was successful in the logs, I attempted to access both the Proxmox web GUI, and the pfSense web GUI, both of which were successful.
 
-![pfsense-from-phone](/assets/images/pfsense-from-phone.PNG)
+![pfsense-from-phone](/assets/images/phase1/pfsense-from-phone.PNG)
 
 # Troubleshooting
 

@@ -51,7 +51,7 @@ As I mentioned in the section above, in order to access the web GUI, I of course
 
 Once logged in, I navigated to the web GUI using my browser and verified that it was accessible:
 
-![pfSense GUI dashboard accessible from Xubuntu VM](/assets/images/pfsense-on-xubuntu.png)
+![pfSense GUI dashboard accessible from Xubuntu VM](/assets/images/phase1/pfsense-on-xubuntu.png)
 
 ## Configuring & Hardening pfSense
 

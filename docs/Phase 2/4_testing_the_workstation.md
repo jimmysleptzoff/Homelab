@@ -41,7 +41,7 @@ To my surprise, Alice and Bob were both able to access and modify files in the A
 
 After fixing permissions, I have now verified that Alice and Bob cannot access the Accounting folder. Lastly, I want to check management permissions to ensure that read-only access was properly granted.
 
-![management-read-only](/assets/images/management-read-only.png)
+![management-read-only](/assets/images/phase2/management-read-only.png)
 
 As shown above, management (dave) is able to view both the Marketing and Accounting drives, but is unable to modify, create, or delete anything within them (Denied when trying to create a new file. I also tried to write to `passwords.txt` and was denied when trying to save.)
 
@@ -55,13 +55,13 @@ As shown above, management (dave) is able to view both the Marketing and Account
 1. My first instinct is to check the group permissions for the groups on the Domain Controller. This is set up correctly and is not a finding.
 2. My second instinct is to check the access permissions that I set up on the fileserver.
 
-    ![marketing-permisisons-from-fileserver](/assets/images/marketing-permissions-from-fileserver.png)
+    ![marketing-permisisons-from-fileserver](/assets/images/phase2/marketing-permissions-from-fileserver.png)
 
     `BUILTIN\Users` do have separate permissions, which I thought might be the issue. I checked to make sure that the users I created in the standard users OU weren't also added to the builtin users container. They were not, so this is also not a finding. (This became a finding, see below)
 
 3. Next, I checked to make sure that the smb shares were properly configured on the file server.
 
-![smbshares-from-fileserver](/assets/images/smbshares-from-fileserver.png)
+![smbshares-from-fileserver](/assets/images/phase2/smbshares-from-fileserver.png)
 
 Here's the problem. When I first configured the smb shares, I gave `Authenticated Users` full access at the *share* level. `Authenticated Users` is a built-in group that includes every logged-in domain account regardless of the department, so Alice and Bob get full control here.
 
@@ -85,11 +85,11 @@ Grant-SmbShareAccess -Name "Accounting" -AccountName "ZOFFLAB\Management" -Acces
 
 And I can verify:
 
-![fixed-smbshareaccess](/assets/images/fixed-smbshareaccess.png)
+![fixed-smbshareaccess](/assets/images/phase2/fixed-smbshareaccess.png)
 
 And re-test from Alice's account:
 
-![alice-cant-get-to-accounting-folder](/assets/images/alice-cant-get-to-accounting-folder.png)
+![alice-cant-get-to-accounting-folder](/assets/images/phase2/alice-cant-get-to-accounting-folder.png)
 
 Alice and Bob both no longer have access to the Accounting folder. I made sure to remove the network drive on the client, forcing Windows to drop the cached connection.
 
@@ -126,13 +126,13 @@ icacls "C:\Shares\Accounting" /grant "CREATOR OWNER:(OI)(CI)(IO)F"
 
 Verifying with `icacls` afterwards confirmed that both folder no longer grant permissions to all users in the `BUILTIN\Users` container.
 
-![builtin-users-perms-removed](/assets/images/builtin-users-perms-removed.png)
+![builtin-users-perms-removed](/assets/images/phase2/builtin-users-perms-removed.png)
 
 ---
 
 * **Issue:** As mentioned above in the previous issue, the `BUILTIN\Users` permissions that were assigned to the Marketing and Accounting folders were inherited from the `C:\Share\` folder. This of course means that that folder has those same permissions, and I want to remove them so that users cannot view all of the folder in `C:\Shares`. It also means that anything that I create in this folder in the future will also inherit the same built-in user permissions that I just spent time removing on the `Accounting` and `Marketing` folders.
 
-![shares-with-user-perms](/assets/images/shares-with-user-perms.png)
+![shares-with-user-perms](/assets/images/phase2/shares-with-user-perms.png)
 
 * **Solution:**
 
@@ -152,6 +152,6 @@ Set-SmbShare -Name "Accounting" -FolderEnumerationMode AccessBased
 
 Then of course I verified:
 
-![enum-set-to-accessbased](/assets/images/enum-set-to-accessbased.png)
+![enum-set-to-accessbased](/assets/images/phase2/enum-set-to-accessbased.png)
 
 Now enumeration is set to access based and not unrestricted as it was before.

@@ -43,6 +43,7 @@ This is a self-directed homelab built on Proxmox that's being used both as a per
 * [ ] **Phase 5 — Cloud Integration**
   * [ ] Azure AD (Entra ID)
   * [ ] Hybrid identity via Azure AD Connect
+  * [ ] Terraform — provision Azure resources as code
   * [ ] Optional: Microsoft Sentinel
 * [ ] **Phase 6 — Offensive/Defensive Practice**
   * [ ] Kali Linux + intentionally vulnerable targets in an isolated VLAN

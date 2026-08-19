@@ -4,7 +4,7 @@ File: 1_planning_and_deployment_decisions.md
 
 Created: August 9, 2026
 
-Last Modified: August 9, 2026
+Last Modified: August 18, 2026
 
 # Goal
 
@@ -40,7 +40,7 @@ However, in this case, Splunk will be running directly in the VM instead of on i
 
 Splunk will be considered an infrastructure server as it will act as the primary log aggregation endpoint. Because of this, it will sit on VLAN20.
 
-Because VLAN20 currently has access to itself and itself only, I will need to modify the firewall rules to allow inbound traffic from devices (forwarded logs). I will also need to add rules giving it scoped outbound access in order for it to access the internet (receive updates/access Splunkbase) and send alerts.
+VLAN20 already has outbound access to the internet via the `Allow VLAN20 -> any` rule, so there doesn't need to be a new outbound rule for splunk-specifically. Also, VLAN10 is already permitted to send traffic to VLAN20, and VLAN30 will be used as a controlled testing environment. Because of this, no new firewall rules will need to be made unless I decide to add logs from the Pi-hole as well.
 
 ### Index Strategy
 

@@ -44,7 +44,7 @@ The general steps for installing a VM in Proxmox are as follows:
 
 Once the VM finished installing, I logged in and tested internet access and DNS using `curl parrot.live`, which displays a fun ASCII animation of a dancing parrot:
 
-![A screenshot of ubuntu server running on my proxmox server with curl live.parrot going in the terminal](/assets/images/ubuntu-server-setup.png)
+![A screenshot of ubuntu server running on my proxmox server with curl live.parrot going in the terminal](/assets/images/initial_setup/ubuntu-server-setup.png)
 
 ---
 
