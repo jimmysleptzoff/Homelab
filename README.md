@@ -62,3 +62,5 @@ Each completed phase has (or will have) its own write-up under [`/docs`](./docs)
 ## Status
 
 Currently working through **Phase 3**: I've successfully set up Windows AD with two scoped Organizational Units, as well as a file server with shared folders. I also implemented NTFS and Share permissions on each of the shared folders to allow for least-privilege. Next, I will be implementing Splunk for log aggregation and network monitoring.
+
+Note on absence: August was a busy month for me, family visiting, friends visiting, flying to other cities to see more family (and a really cool airshow.) Then at the end of August I got sick for about a week and a half. Now I'm finally back.
